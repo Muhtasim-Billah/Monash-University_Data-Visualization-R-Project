@@ -31,15 +31,15 @@ shinyServer(function(input, output,session) {
       p <- ggplot(twtCountMap, aes(x = country, y = tweetsCount, fill = factor(country))) + theme_bw()
       p <- p + geom_bar(stat = "identity", position = "dodge") + 
             scale_fill_brewer("country", palette = "Spectral") + 
-            geom_text(aes(label = tweetsCount), position = position_dodge(width = 0.9), 
-                vjust = 1.5)
+            #CODE IS HIDDEN,,,,,,,,,
+      
       print(p)
     }
     
     else if (input$option == "bubbleChart") #if user selects comparison in bubble chart option
     {
       p <- ggplot(twtCountMap, aes(country,tweetsCount,size=tweetsCount, label=tweetsCount))
-      p <- p+geom_point(colour="blue") +scale_size_area(limits=c(60,90))+geom_text(size=3)
+      p <- #CODE IS HIDDEN,,,,,,,,,,,,,,,,
       p <- p + xlab("Countries tweeting on Zika") + ylab("Tweets on Zika")
       
       print(p)
@@ -55,7 +55,7 @@ shinyServer(function(input, output,session) {
       docs = input
       
       
-      docs <- tm_map(docs, content_transformer(tolower))
+      docs <- #CODE IS HIDDEN
       docs <- tm_map(docs, removeWords, stopwords("english"))
       docs <- tm_map(docs, removePunctuation)
       docs <- tm_map(docs, PlainTextDocument)
@@ -64,7 +64,7 @@ shinyServer(function(input, output,session) {
       
       
       # and process again
-      dtm <- TermDocumentMatrix(docs)
+      dtm <- #CODE IS HIDDEN
       m <- as.matrix(dtm)
       v <- sort(rowSums(m),decreasing=TRUE)
       d <- data.frame(words = names(v), freq=v)
@@ -74,7 +74,7 @@ shinyServer(function(input, output,session) {
       # and display again, 'the' should be gone
       set.seed(1234)
       wordcloud(words = d$words, freq = d$freq, min.freq = 1,
-                #CODE TO WRITE
+                #CODE IS HIDDEN
                 colors=brewer.pal(8, "Dark2"))
     }
     
@@ -89,7 +89,7 @@ shinyServer(function(input, output,session) {
     
       leaflet(places) %>% addTiles() %>%
         addCircles(lng = ~Long, lat = ~Lat, weight = 1,
-                 #CODE TO WRITE                                       #multiply the tweetscount with 20000 to show 
+                 #CODE IS HIDDEN                                      #multiply the tweetscount with 20000 to show 
                                                                         #the indicator bubble clearly visuable in map
                   )
   
