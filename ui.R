@@ -1,3 +1,7 @@
+#Author: Muhtasim Billah
+#There are some changes made here for this version. 
+#Related CSV Data File Not Attached
+
 library(shiny)
 library(leaflet)
 
@@ -14,15 +18,15 @@ shinyUI(fluidPage(
       helpText("This following options are for showing comparison of number of tweets 
                by countries & showing most used keywords in tweets: "),
       selectInput("option", "Options:", 
-                  c("Comparison in Bar Graph"= "tweetsCount",
-                    "Comparison in bubble chart" = "bubbleChart",
-                    "Used keywords in wordcloud" = "wordcloud")
-                  ),
+                 #CODE IS HIDDEN
+                  ...............
+                  ..............
       br(),
       helpText("This following option is for showing twitter user places in Map: "),
       
       selectInput("selection", "Map Selection:",
-                  c("Twitter Users' Countries in Map" = "map"))
+                  #CODE IS HIDDEN
+                  ...............
       
       
     ),
