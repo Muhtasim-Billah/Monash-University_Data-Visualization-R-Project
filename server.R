@@ -1,3 +1,7 @@
+#Author: Muhtasim Billah
+#There are some changes made here for this version. 
+#Related CSV Data File Not Attached
+
 require(maptools)
 require(ggplot2)
 # we need the following libraries
@@ -6,9 +10,7 @@ library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
 library("tm") # for text mining
-library("SnowballC") # for text stemming
-library("wordcloud")
-library(ggmap)
+#Library to be called
 library(plotly)
 library(leaflet)
 library(rgdal)
@@ -21,7 +23,7 @@ shinyServer(function(input, output,session) {
   # Generate a plot of the requested variable against twitter data 
   output$twtPlot <- reactivePlot(function() {
     
-    twtCountMap <- read.csv("twtCountMap.csv")  #reading the excel file
+    twtCountMap <- read.csv("CSV FILE")  #reading the excel file
     
     if (input$option == "tweetsCount")   #if user selects comparison in bar graph option
     {
@@ -46,7 +48,7 @@ shinyServer(function(input, output,session) {
     else if (input$option == "wordcloud")   #if user selects used keywords in wordcloud option
     {
       # Read the excel file containing all twitter texts
-      text <- readLines("twtText.csv")
+      text <- readLines("CSV FILE")
       
       # Load the data as a corpus and save a copy as 'input'
       input <- Corpus(VectorSource(text))
@@ -58,7 +60,7 @@ shinyServer(function(input, output,session) {
       docs <- tm_map(docs, removePunctuation)
       docs <- tm_map(docs, PlainTextDocument)
       docs <- tm_map(docs, stemDocument)
-      docs <- tm_map(docs, removeWords, c("zika","virus","zikavirus")) 
+      docs <- tm_map(docs, #CODE TO WRITE, c("zika","virus","zikavirus")) 
       
       
       # and process again
@@ -72,7 +74,7 @@ shinyServer(function(input, output,session) {
       # and display again, 'the' should be gone
       set.seed(1234)
       wordcloud(words = d$words, freq = d$freq, min.freq = 1,
-                max.words=200, random.order=FALSE, rot.per=0.35, 
+                #CODE TO WRITE
                 colors=brewer.pal(8, "Dark2"))
     }
     
@@ -83,11 +85,11 @@ shinyServer(function(input, output,session) {
     
     if(input$selection == "map")  #if user selects twitter users' countries in map option
     {
-      places <- read.csv("twtCountMap.csv")  #read the excel file containing latitude, logitude, country name
+      #CODE TO WRITE                      #read the excel file containing latitude, logitude, country name
     
       leaflet(places) %>% addTiles() %>%
         addCircles(lng = ~Long, lat = ~Lat, weight = 1,
-                 radius = ~sqrt(tweetsCount) * 20000, popup = ~country  #multiply the tweetscount with 20000 to show 
+                 #CODE TO WRITE                                       #multiply the tweetscount with 20000 to show 
                                                                         #the indicator bubble clearly visuable in map
                   )
   
